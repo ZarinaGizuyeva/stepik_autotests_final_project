@@ -5,7 +5,6 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 import math
 from .locators import BasePageLocators
-from .login_page import LoginPage
 
 class BasePage():
     def __init__(self, browser, url, timeout=10):
@@ -42,6 +41,10 @@ class BasePage():
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
         #return LoginPage(browser=self.browser, url=self.browser.current_url)
+
+    def go_to_basket_page(self):
+        link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
+        link.click()
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
