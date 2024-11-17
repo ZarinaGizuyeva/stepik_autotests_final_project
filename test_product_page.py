@@ -1,9 +1,6 @@
-import time
-
 import pytest
 
-from conftest import browser
-from pages.login_page import LoginPage
+from .pages.login_page import LoginPage
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
 
@@ -78,7 +75,6 @@ class TestUserAddToBasketFromProductPage:
         page = LoginPage(browser, link)
         page.open()
         page.register_new_user()
-        time.sleep(5)
         page.should_be_authorized_user()
 
 
