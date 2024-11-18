@@ -14,6 +14,7 @@ def browser(request):
     language = request.config.getoption("language")
     browser = None
     options = Options()
+    options.add_argument('--headless')
     options.add_experimental_option('prefs', {'intl.accept_languages': language})
 
     options_firefox = OptionsFirefox()
