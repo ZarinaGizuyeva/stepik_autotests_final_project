@@ -3,6 +3,7 @@ from .locators import BasketPageLocators
 
 
 class BasketPage(BasePage):
+    url = "http://selenium1py.pythonanywhere.com/ru/basket/"
     def should_be_empty_basket(self):
         assert self.is_not_element_present(*BasketPageLocators.PRODUCTS_LIST_IN_BASKET), "Products in basket, but should be empty basket"
 

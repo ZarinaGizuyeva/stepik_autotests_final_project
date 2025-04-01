@@ -1,9 +1,12 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators
 import faker
+import pytest
 
 
 class LoginPage(BasePage):
+    url = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
+
     def register_new_user(self):
         f = faker.Faker()
         email = f.email()
