@@ -1,3 +1,6 @@
+import time
+
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
@@ -28,6 +31,10 @@ class BasePage:
         except TimeoutException:
             return True
         return False
+
+    def is_clickable(self, how, what):
+        self.browser.find_element(how, what).click()
+        return True
 
     def is_disappeared(self, how, what, timeout=4):
         try:

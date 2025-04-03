@@ -9,3 +9,9 @@ class BasketPage(BasePage):
 
     def should_be_message_that_basket_empty(self):
         assert self.is_element_present(*BasketPageLocators.BASKET_EMPTY_MESSAGE), "No message that basket is empty, but should be"
+
+    def should_be_basket_url(self):
+        assert "basket" in self.url, "The url is not basket page"
+
+    def should_be_clickable_continue_shopping_link(self):
+        assert self.is_clickable(*BasketPageLocators.CONTINUE_SHOPPING_LINK), "Cant click on continue shopping link"

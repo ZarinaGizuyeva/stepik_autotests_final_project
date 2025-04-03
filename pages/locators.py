@@ -27,3 +27,4 @@ class ProductPageLocators():
 class BasketPageLocators():
     PRODUCTS_LIST_IN_BASKET = (By.CSS_SELECTOR, "form.basket_summary#basket_formset")
     BASKET_EMPTY_MESSAGE = (By.CSS_SELECTOR, ".content #content_inner")
+    CONTINUE_SHOPPING_LINK = (By.XPATH, "//div[@id='content_inner']//a")
