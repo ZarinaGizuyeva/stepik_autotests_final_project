@@ -10,6 +10,8 @@ class MainPageLocators():
 
 class LoginPageLocators():
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form.well")
+    LOGIN_EMAIL = (By.CSS_SELECTOR, "input#id_login-username")
+    LOGIN_PASSWORD = (By.CSS_SELECTOR, "input#id_login-password")
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form.well")
     REGISTER_EMAIL = (By.CSS_SELECTOR, "input#id_registration-email")
     REGISTER_PASSWORD = (By.CSS_SELECTOR, "input#id_registration-password1")
