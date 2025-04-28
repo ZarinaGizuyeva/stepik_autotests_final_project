@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
+import faker
 
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome', help="Choose browser: chrome or firefox")
@@ -15,6 +15,16 @@ def browser(request):
     request.cls.browser = browser
     yield
     browser.quit()
+
+@pytest.fixture()
+def generate_login_password(request):
+    f = faker.Faker()
+    email = f.email()
+    password = f.password()
+    return email, password
+
+
+
 
 
 

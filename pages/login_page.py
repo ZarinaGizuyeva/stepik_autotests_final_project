@@ -1,3 +1,4 @@
+from conftest import generate_login_password
 from .base_page import BasePage
 from .locators import LoginPageLocators
 import faker
@@ -7,15 +8,12 @@ import pytest
 class LoginPage(BasePage):
     url = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
 
-    def register_new_user(self):
-        f = faker.Faker()
-        email = f.email()
-        password = f.password()
-        self.browser.find_element(*LoginPageLocators.REGISTER_EMAIL).send_keys(email)
-        self.browser.find_element(*LoginPageLocators.REGISTER_PASSWORD).send_keys(password)
-        self.browser.find_element(*LoginPageLocators.REGISTER_PASSWORD_CONFIRM).send_keys(password)
+    @pytest.mark.usefixtures("generate_login_password")
+    def register_new_user(self, generate_login_password):
+        self.browser.find_element(*LoginPageLocators.REGISTER_EMAIL).send_keys(generate_login_password[0])
+        self.browser.find_element(*LoginPageLocators.REGISTER_PASSWORD).send_keys(generate_login_password[1])
+        self.browser.find_element(*LoginPageLocators.REGISTER_PASSWORD_CONFIRM).send_keys(generate_login_password[1])
         self.browser.find_element(*LoginPageLocators.REGISTER_BUTTON).click()
-
 
     def should_be_login_page(self):
         self.should_be_login_url()
