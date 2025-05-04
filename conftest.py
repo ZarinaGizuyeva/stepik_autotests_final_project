@@ -9,9 +9,9 @@ def pytest_addoption(parser):
 
 @pytest.fixture(autouse=True)
 def browser(request):
-    browser = webdriver.Chrome()
     options = Options()
     options.add_argument('--headless')
+    browser = webdriver.Chrome(options=options)
     request.cls.browser = browser
     yield
     browser.quit()
