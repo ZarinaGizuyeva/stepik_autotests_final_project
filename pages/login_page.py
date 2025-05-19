@@ -1,8 +1,8 @@
-from conftest import generate_login_password
+import pytest
+
+
 from .base_page import BasePage
 from .locators import LoginPageLocators
-import faker
-import pytest
 
 
 class LoginPage(BasePage):

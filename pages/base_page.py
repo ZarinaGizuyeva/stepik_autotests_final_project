@@ -1,14 +1,11 @@
-import time
-
-
-from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.webdriver import WebDriver
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from conftest import browser
 from .locators import BasePageLocators
+
 
 class BasePage:
     def __init__(self, browser):
@@ -17,6 +14,7 @@ class BasePage:
 
     def open(self):
         self.browser.get(self.url)
+        self.browser.maximize_window()
 
     def is_element_present(self, how, what):
         try:
@@ -32,8 +30,12 @@ class BasePage:
             return True
         return False
 
+    # def is_clickable(self, how, what):
+    #     self.browser.find_element(how, what).click()
+    #     return True
+
     def is_clickable(self, how, what):
-        self.browser.find_element(how, what).click()
+        WebDriverWait(self.browser, 4).until(EC.element_to_be_clickable((how, what)))
         return True
 
     def is_disappeared(self, how, what, timeout=4):
@@ -47,7 +49,6 @@ class BasePage:
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
-        #return LoginPage(browser=self.browser, url=self.browser.current_url)
 
     def go_to_basket_page(self):
         link = self.browser.find_element(*BasePageLocators.BASKET_LINK)

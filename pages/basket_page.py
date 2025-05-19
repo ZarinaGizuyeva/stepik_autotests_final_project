@@ -14,4 +14,7 @@ class BasketPage(BasePage):
         assert "basket" in self.url, "The url is not basket page"
 
     def should_be_clickable_continue_shopping_link(self):
-        assert self.is_clickable(*BasketPageLocators.CONTINUE_SHOPPING_LINK), "Cant click on continue shopping link"
+        assert self.is_clickable(*BasketPageLocators.CONTINUE_SHOPPING_LINK), "Link is not clickable"
+
+    def go_to_account(self):
+        self.browser.find_element(*BasketPageLocators.ACCOUNT_LINK).click()

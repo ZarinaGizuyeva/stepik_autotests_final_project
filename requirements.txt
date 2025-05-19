@@ -21,5 +21,6 @@ urllib3==2.2.2
 websocket-client==1.8.0
 wsproto==1.2.0
 faker==33.0.0
+xdist==3.6.1
 
 requests~=2.32.3

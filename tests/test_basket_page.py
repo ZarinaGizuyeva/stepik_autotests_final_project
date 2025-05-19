@@ -1,4 +1,3 @@
-import pytest
 from pages.basket_page import BasketPage
 
 class TestBasketPage:

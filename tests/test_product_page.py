@@ -1,8 +1,10 @@
 import pytest
 
+from pages.basket_page import BasketPage
 from pages.login_page import LoginPage
 from pages.product_page import ProductPage
-from pages.basket_page import BasketPage
+from pages.profile_page import ProfilePage
+
 
 @pytest.mark.usefixtures("browser")
 class TestProductPage:
@@ -55,6 +57,12 @@ class TestProductPage:
         self.login_page.open()
         self.login_page.register_new_user(generate_login_password)
         self.login_page.should_be_authorized_user()
+        yield
+        self.basket_page = BasketPage(self.browser)
+        self.basket_page.go_to_account()
+        self.profile_page = ProfilePage(self.browser)
+        self.profile_page.open()
+        self.profile_page.delete_profile(generate_login_password[1])
 
 
     def test_user_can_add_product_to_basket(self, login):

@@ -13,11 +13,11 @@ def browser(request):
     options.add_argument('--headless')
     browser = webdriver.Chrome(options=options)
     request.cls.browser = browser
-    yield
+    yield browser
     browser.quit()
 
 @pytest.fixture()
-def generate_login_password(request):
+def generate_login_password():
     f = faker.Faker()
     email = f.email()
     password = f.password()
